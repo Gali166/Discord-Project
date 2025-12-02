@@ -1,0 +1,7 @@
+.venv/
+messages.db
+*.pyc
+__pycache__/
+.idea/
+templates/*
+!templates/index.html

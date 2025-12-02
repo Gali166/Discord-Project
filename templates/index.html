@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Text</title>
+</head>
+<body>
+    <h1>Input Text</h1>
+
+    <form id="textForm">
+        <label for="text">Enter Text:</label>
+        <input type="text" id="text" name="text" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("textForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const text = document.getElementById("text").value;
+
+            const response = await fetch("/input_text", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text: text })
+            });
+
+            const result = await response.json();
+            document.getElementById("result").innerText = result.status;
+        });
+    </script>
+
+</body>
+</html>
